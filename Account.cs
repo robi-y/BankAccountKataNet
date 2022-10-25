@@ -8,28 +8,28 @@ namespace BankAccountKata
 {
     public class Account
     {
-        private ITransactionManager transactionManager;
+        private ITransactionRepository _transactionRepository;
         private StatementPrinter statementPrinter;
 
-        public Account(ITransactionManager transactionManager, StatementPrinter statementPrinter)
+        public Account(ITransactionRepository _transactionRepository, StatementPrinter statementPrinter)
         {
-            this.transactionManager = transactionManager;
+            this._transactionRepository = _transactionRepository;
             this.statementPrinter = statementPrinter;
         }
 
         public void Deposit(int amount)
         {
-            transactionManager.LogDeposit(amount);
+            _transactionRepository.LogDeposit(amount);
         }
 
         public void Withdraw(int amount)
         {
-            transactionManager.LogWithdrawal(amount);
+            _transactionRepository.LogWithdrawal(amount);
         }
 
         public void PrintStatement()
         {
-            var statements = transactionManager.AllStatements;
+            var statements = _transactionRepository.AllStatements;
             statementPrinter.Print(statements);
         }
 

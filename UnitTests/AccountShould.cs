@@ -10,13 +10,13 @@ namespace BankAccountKata.UnitTests
 {
     public class AccountShould
     {
-        private readonly ITransactionManager transactionManager = Substitute.For<ITransactionManager>();
+        private readonly ITransactionRepository _transactionRepository = Substitute.For<ITransactionRepository>();
         private readonly StatementPrinter statementPrinter = Substitute.For<StatementPrinter>();
         private readonly Account account;
 
         public AccountShould()
         {
-            account = new Account(transactionManager, statementPrinter);
+            account = new Account(_transactionRepository, statementPrinter);
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace BankAccountKata.UnitTests
         {
             account.Deposit(100);
 
-            transactionManager.Received().LogDeposit(100);
+            _transactionRepository.Received().LogDeposit(100);
         }
       
         [Fact]
@@ -32,14 +32,14 @@ namespace BankAccountKata.UnitTests
         {
             account.Withdraw(100);
 
-            transactionManager.Received().LogWithdrawal(100);
+            _transactionRepository.Received().LogWithdrawal(100);
         }
 
         [Fact]
         public void UseStatementPrinterWithAllStatement_forPrintStatements()
         {
             var statements = new List<Statement> {new Statement()};
-            transactionManager.AllStatements.Returns(statements);
+            _transactionRepository.AllStatements.Returns(statements);
 
             account.PrintStatement();
 

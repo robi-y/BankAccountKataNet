@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NSubstitute;
@@ -11,13 +9,13 @@ namespace BankAccountKata.BehaviorTests
     public class PrintStatementFeature
     {
         private Console console = Substitute.For<Console>();
-        private ITransactionManager transactionManager;
+        private ITransactionRepository _transactionRepository = new InMemoryTransactionReopsitory();
         private StatementPrinter statementPrinter;
 
         [Fact]
         public void PrintAllClientStatements()
         {
-            var account = new Account(transactionManager, statementPrinter);
+            var account = new Account(_transactionRepository, statementPrinter);
 
             account.Deposit(1000);
             account.Withdraw(100);

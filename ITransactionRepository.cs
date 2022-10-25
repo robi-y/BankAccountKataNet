@@ -2,14 +2,10 @@
 
 namespace BankAccountKata
 {
-    public interface ITransactionManager
+    public interface ITransactionRepository
     {
         void LogDeposit(int amount);
         void LogWithdrawal(int amount);
         List<Statement> AllStatements { get; }
-    }
-
-    public class Statement
-    {
     }
 }
