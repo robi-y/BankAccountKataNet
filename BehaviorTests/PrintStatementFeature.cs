@@ -12,11 +12,12 @@ namespace BankAccountKata.BehaviorTests
     {
         private Console console = Substitute.For<Console>();
         private ITransactionManager transactionManager;
+        private StatementPrinter statementPrinter;
 
         [Fact]
         public void PrintAllClientStatements()
         {
-            var account = new Account(transactionManager);
+            var account = new Account(transactionManager, statementPrinter);
 
             account.Deposit(1000);
             account.Withdraw(100);

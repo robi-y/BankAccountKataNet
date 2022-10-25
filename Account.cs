@@ -9,10 +9,12 @@ namespace BankAccountKata
     public class Account
     {
         private ITransactionManager transactionManager;
+        private StatementPrinter statementPrinter;
 
-        public Account(ITransactionManager transactionManager)
+        public Account(ITransactionManager transactionManager, StatementPrinter statementPrinter)
         {
             this.transactionManager = transactionManager;
+            this.statementPrinter = statementPrinter;
         }
 
         public void Deposit(int amount)
@@ -22,12 +24,13 @@ namespace BankAccountKata
 
         public void Withdraw(int amount)
         {
-            throw new NotImplementedException();  
+            transactionManager.LogWithdrawal(amount);
         }
 
         public void PrintStatement()
         {
-            throw new NotImplementedException();    
+            var statements = transactionManager.AllStatements;
+            statementPrinter.Print(statements);
         }
 
     }
