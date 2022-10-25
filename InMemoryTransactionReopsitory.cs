@@ -32,7 +32,13 @@ namespace BankAccountKata
 
         public void LogWithdrawal(int amount)
         {
-            throw new NotImplementedException();
+            var balance = calcBalance() - amount;
+            statements.Add(new Statement
+            {
+                Amount = -amount,
+                Balance = balance,
+                Date = clock.TodatAsString
+            });
         }
 
         public List<Statement> AllStatements
