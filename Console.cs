@@ -8,7 +8,7 @@ namespace BankAccountKata
 {
     public class Console
     {
-        public void WriteLine(string text)
+        public virtual void WriteLine(string text)
         {
             throw new NotImplementedException();
         }

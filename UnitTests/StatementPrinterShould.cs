@@ -16,7 +16,7 @@ namespace BankAccountKata.UnitTests
         public void PrintHeaderForEmptyStatementList()
         {
             Console console = Substitute.For<Console>();
-            var printer = new StatementPrinter();
+            var printer = new StatementPrinter(console);
 
             printer.Print(EMPTY_STATEMENT);
 
