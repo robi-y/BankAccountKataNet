@@ -14,16 +14,11 @@ namespace BankAccountKata.UnitTests
         public void LogDepositToTransactionRepository()
         {
             var transactionManager = Substitute.For<ITransactionManager>();
-            var account = new Account();
+            var account = new Account(transactionManager);
 
             account.Deposit(100);
 
             transactionManager.Received().LogDeposit(100);
         }
-    }
-
-    public interface ITransactionManager
-    {
-        void LogDeposit(int amount);
     }
 }
