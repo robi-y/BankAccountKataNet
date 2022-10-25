@@ -11,9 +11,9 @@ namespace BankAccountKata
         private ITransactionRepository transactionRepository;
         private StatementPrinter statementPrinter;
 
-        public Account(ITransactionRepository _transactionRepository, StatementPrinter statementPrinter)
+        public Account(ITransactionRepository transactionRepository, StatementPrinter statementPrinter)
         {
-            this.transactionRepository = _transactionRepository;
+            this.transactionRepository = transactionRepository;
             this.statementPrinter = statementPrinter;
         }
 
