@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NSubstitute;
 using Xunit;
 
 namespace BankAccountKata.UnitTests
@@ -14,9 +15,12 @@ namespace BankAccountKata.UnitTests
         [Fact]
         public void ForDeposit_LogStsatementInMemoty()
         {
-            var tranactions = new InMemoryTransactionReopsitory();
+            var clock = Substitute.For<Clock>();
+            clock.TodatAsString.Returns(SOMEDAY);
 
-            tranactions.LogDeposit(100);
+            var tranactions = new InMemoryTransactionReopsitory(clock);
+
+            tranactions.LogDeposit(1000);
 
             Assert.Equal(1, tranactions.AllStatements.Count);
 

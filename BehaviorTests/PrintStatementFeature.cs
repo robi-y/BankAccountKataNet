@@ -9,13 +9,19 @@ namespace BankAccountKata.BehaviorTests
     public class PrintStatementFeature
     {
         private Console console = Substitute.For<Console>();
-        private ITransactionRepository _transactionRepository = new InMemoryTransactionReopsitory();
+        private Clock clock = Substitute.For<Clock>();
+        private ITransactionRepository transactionRepository;
         private StatementPrinter statementPrinter;
+
+        public PrintStatementFeature()
+        {
+            transactionRepository = new InMemoryTransactionReopsitory(clock);
+        }
 
         [Fact]
         public void PrintAllClientStatements()
         {
-            var account = new Account(_transactionRepository, statementPrinter);
+            var account = new Account(transactionRepository, statementPrinter);
 
             account.Deposit(1000);
             account.Withdraw(100);
