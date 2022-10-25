@@ -23,7 +23,7 @@ namespace BankAccountKata.UnitTests
         [Fact]
         public void ForDeposit_LogStsatementInMemoty()
         {
-            clock.TodatAsString.Returns(SOMEDAY);
+            clock.TodayAsString.Returns(SOMEDAY);
 
             tranactions.LogDeposit(1000);
 
@@ -36,7 +36,7 @@ namespace BankAccountKata.UnitTests
         public void ForWithdrawal_LogStsatementInMemoty()
         {
            
-            clock.TodatAsString.Returns(SOMEDAY);
+            clock.TodayAsString.Returns(SOMEDAY);
 
             tranactions.LogWithdrawal(1000);
 

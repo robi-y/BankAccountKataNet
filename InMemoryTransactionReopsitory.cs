@@ -21,7 +21,7 @@ namespace BankAccountKata
             {
                 Amount = amount,
                 Balance = balance,
-                Date = clock.TodatAsString
+                Date = clock.TodayAsString
             });
         }
 
@@ -37,7 +37,7 @@ namespace BankAccountKata
             {
                 Amount = -amount,
                 Balance = balance,
-                Date = clock.TodatAsString
+                Date = clock.TodayAsString
             });
         }
 

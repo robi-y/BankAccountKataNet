@@ -15,7 +15,9 @@ namespace BankAccountKata.BehaviorTests
 
         public PrintStatementFeature()
         {
+            clock.TodayAsString.Returns("01/11/2015", "02/11/2015", "10/11/2015");
             transactionRepository = new InMemoryTransactionReopsitory(clock);
+            statementPrinter = new StatementPrinter(console);
         }
 
         [Fact]
@@ -32,10 +34,9 @@ namespace BankAccountKata.BehaviorTests
             Received.InOrder(() =>
             {
                 console.Received().WriteLine("DATE       | AMOUNT  | BALANCE");
-                console.Received().WriteLine("10/11/2015 |  500.00 | 1400.00");
+                console.Received().WriteLine("10/11/2015 | 500.00 | 1400.00");
                 console.Received().WriteLine("02/11/2015 | -100.00 | 900.00");
                 console.Received().WriteLine("01/11/2015 | 1000.00 | 1000.00");
-                
             });        
         }
     }
